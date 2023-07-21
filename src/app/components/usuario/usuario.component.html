@@ -1,0 +1,18 @@
+<ng-container *ngIf="usuario">
+  <tr>
+    <td>{{ usuario.name.first }} {{ usuario.name.last }}</td>
+    <td>
+      {{ usuario.email }}
+    </td>
+    <td>
+      <img
+        [ngSrc]="usuario.picture.medium"
+        alt=""
+        width="200"
+        height="300"
+        class="l"
+      />
+    </td>
+  </tr>
+</ng-container>
+<ng-container *ngIf="!usuario"> Personaje no renderizado </ng-container>

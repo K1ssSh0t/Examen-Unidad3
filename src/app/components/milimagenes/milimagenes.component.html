@@ -1,0 +1,274 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav p-5" mode="side">
+    <div
+      class="flex flex-col justify-center items-center bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg border-zinc-200 border antialiased my-5"
+    >
+      <div class="p-2 whitespace-nowrap">
+        <div class="flex items-center">
+          <div
+            class="flex items-center justify-center w-20 h-20 mx-2 overflow-hidden rounded-full border border-slate-400"
+          >
+            <img
+              class="rounded-md bg-cover ring-2 ring-white inline-block w-20 h-20 overflow-hidden"
+              [src]="usuario.picture.medium"
+              alt="User Name"
+            />
+          </div>
+        </div>
+      </div>
+      <span class="text-xl"
+        >{{ usuario.name.first }} {{ usuario.name.last }}</span
+      >
+    </div>
+
+    <mat-list role="list" class="text-left">
+      <mat-list-item role="listitem">
+        <a
+          routerLink="/full-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-left flex items-center gap-1"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="list"
+          ></mat-icon>
+          Lista Completa</a
+        >
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <a
+          routerLink="/usuarios"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-left flex items-center gap-1"
+        >
+          <mat-icon>account_circle</mat-icon>
+          Usuarios</a
+        ></mat-list-item
+      >
+      <mat-list-item role="listitem">
+        <a
+          routerLink="/principal"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-center flex items-center gap-1"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="home"
+          ></mat-icon
+          >Pantalla Principal</a
+        ></mat-list-item
+      >
+    </mat-list>
+    <div class="flex justify-center items-center">
+      <a
+        mat-raised-button
+        routerLink="/"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Cerrar Sesion</a
+      >
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+    <!-- component -->
+    <p>
+      <mat-toolbar>
+        <button
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+          (click)="drawer.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Lista Completa</span>
+        <span class="example-spacer"></span>
+        <div
+          class="p-2 whitespace-nowrap cursor-pointer"
+          [matMenuTriggerFor]="menu"
+        >
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-12 h-12 mx-2 overflow-hidden rounded-full"
+            >
+              <img
+                class="rounded-md bg-cover ring-2 ring-white inline-block w-12 h-12 overflow-hidden"
+                [src]="usuario.picture.medium"
+                alt="User Name"
+              />
+            </div>
+          </div>
+        </div>
+        <mat-menu #menu="matMenu" class="w-fit p-2">
+          <p
+            class="cursor-default w-fit flex justify-center items-center gap-2 mx-4"
+          >
+            <mat-icon>account_circle</mat-icon>
+            <span>{{ usuario.name.first }} {{ usuario.name.last }}</span>
+          </p>
+          <p class="w-fit flex justify-center items-center gap-2 mx-4">
+            <mat-icon>mail</mat-icon>
+            <span>{{ usuario.email }}</span>
+          </p>
+          <p class="w-fit flex justify-center items-center gap-2 mx-4">
+            <mat-icon>phone</mat-icon>
+            <span>{{ usuario.cell }}</span>
+          </p>
+        </mat-menu>
+
+        <a
+          mat-raised-button
+          routerLink="/"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Cerrar Sesion</a
+        >
+      </mat-toolbar>
+    </p>
+
+    <section
+      class="antialiased bg-gray-100 text-gray-600 h-full px-4 overflow-scroll"
+    >
+      <div class="flex flex-col justify-center h-full">
+        <!-- Table -->
+        <div
+          class="w-full max-w-[950px] mx-auto bg-white shadow-lg rounded-sm border border-gray-200 h-full"
+        >
+          <div class="p-3">
+            <div class="overflow-x-auto">
+              <table
+                class="table-auto w-full h-full border-separate border-spacing-2"
+              >
+                <thead
+                  class="text-xs font-semibold uppercase text-gray-400 bg-gray-50"
+                >
+                  <tr>
+                    <th class="p-2 whitespace-nowrap">
+                      <div class="font-semibold text-left">Titulo</div>
+                    </th>
+                    <th class="p-2 whitespace-nowrap">
+                      <div class="font-semibold text-left">Calificacion</div>
+                    </th>
+                    <th class="p-2 whitespace-nowrap">
+                      <div class="font-semibold text-left">Total de Votos</div>
+                    </th>
+                    <th class="p-2 whitespace-nowrap">
+                      <div class="font-semibold text-left">
+                        Fecha de Lanzamiento
+                      </div>
+                    </th>
+                    <th class="p-2 whitespace-nowrap">
+                      <div class="font-semibold text-left">
+                        Lenguaje Original
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm divide-y divide-gray-100">
+                  <tr *ngFor="let pelicula of peliculasPaginadas">
+                    <td class="p-2 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
+                          <img
+                            class="rounded-sm"
+                            src="https://image.tmdb.org/t/p/w1280/{{
+                              pelicula.poster_path
+                            }}"
+                            width="40"
+                            height="40"
+                            alt="User Name"
+                          />
+                        </div>
+                        <div
+                          class="font-medium text-gray-800 max-w-[250px] truncate"
+                        >
+                          {{ pelicula.title }}
+                        </div>
+                      </div>
+                    </td>
+                    <td class="p-2 whitespace-nowrap">
+                      {{ pelicula.vote_average }}
+                    </td>
+                    <td class="p-2 whitespace-nowrap">
+                      {{ pelicula.vote_count }}
+                    </td>
+                    <td class="p-2 whitespace-nowrap">
+                      {{ pelicula.release_date }}
+                    </td>
+                    <td class="p-2 whitespace-nowrap uppercase">
+                      {{ pelicula.original_language }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              ​
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="flex items-center justify-center m-2">
+      <div
+        class="flex items-center justify-center gap-3 w-full h-8 align-baseline"
+      >
+        <button
+          (click)="cambiarPaginaPrev()"
+          [disabled]="desabilitadoPrev"
+          class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-200 bg-white text-gray-900 rtl:rotate-180"
+        >
+          <span class="sr-only">Next Page</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+
+        <p class="text-xs text-gray-900 w-12 text-center pt-2">
+          {{ pageNumber }}
+          <span class="mx-0.25">/</span>
+          {{ paginaMaximo }}
+        </p>
+
+        <button
+          (click)="cambiarPaginaNext()"
+          class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-200 bg-white text-gray-900 rtl:rotate-180"
+          id="next"
+          [disabled]="desabilitadoNext"
+        >
+          <span class="sr-only">Next Page</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

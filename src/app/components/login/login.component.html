@@ -1,0 +1,83 @@
+<div class="wrapper">
+  <div class="card-switch">
+    <label class="switch">
+      <input type="checkbox" class="toggle" />
+      <span class="slider"></span>
+      <span class="card-side"></span>
+      <div class="flip-card__inner">
+        <div class="flip-card__front">
+          <div class="title">Log in</div>
+          <form class="flip-card__form" action="" [formGroup]="form">
+            <input
+              class="flip-card__input"
+              name="email"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              required
+            />
+            <input
+              class="flip-card__input"
+              name="password"
+              placeholder="Password"
+              type="password"
+              min="10 "
+              formControlName="password"
+              required
+            />
+            <button
+              class="flip-card__btn"
+              routerLink="/principal"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              [disabled]="form.invalid"
+              type="submit"
+            >
+              Let`s go!
+            </button>
+          </form>
+        </div>
+        <div class="flip-card__back">
+          <div class="title">Sign up</div>
+          <form class="flip-card__form" action="" [formGroup]="formSecond">
+            <input
+              class="flip-card__input"
+              placeholder="Name"
+              type="name"
+              formControlName="name"
+              required
+              min="5"
+            />
+            <input
+              class="flip-card__input"
+              name="email"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              required
+            />
+            <input
+              class="flip-card__input"
+              name="password"
+              placeholder="Password"
+              type="password"
+              min="10 "
+              formControlName="password"
+              required
+            />
+            <button
+              class="flip-card__btn"
+              routerLink="/principal"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              [disabled]="formSecond.invalid"
+              type="submit"
+            >
+              Confirm!
+            </button>
+          </form>
+        </div>
+      </div>
+    </label>
+  </div>
+</div>

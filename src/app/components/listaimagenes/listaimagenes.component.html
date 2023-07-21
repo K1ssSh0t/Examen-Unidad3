@@ -1,0 +1,147 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav p-5" mode="side">
+    <div
+      class="flex flex-col justify-center items-center bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg border-zinc-200 border antialiased my-5"
+    >
+      <div class="p-2 whitespace-nowrap">
+        <div class="flex items-center">
+          <div
+            class="flex items-center justify-center w-20 h-20 mx-2 overflow-hidden rounded-full border border-slate-400"
+          >
+            <img
+              class="rounded-md bg-cover ring-2 ring-white inline-block w-20 h-20 overflow-hidden"
+              [src]="usuario.picture.medium"
+              alt="User Name"
+            />
+          </div>
+        </div>
+      </div>
+      <span class="text-xl"
+        >{{ usuario.name.first }} {{ usuario.name.last }}</span
+      >
+    </div>
+
+    <mat-list role="list" class="text-left">
+      <mat-list-item role="listitem">
+        <a
+          routerLink="/full-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-left flex items-center gap-1"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="list"
+          ></mat-icon>
+          Lista Completa</a
+        >
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <a
+          routerLink="/usuarios"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-left flex items-center gap-1"
+        >
+          <mat-icon>account_circle</mat-icon>
+          Usuarios</a
+        ></mat-list-item
+      >
+      <mat-list-item role="listitem">
+        <a
+          routerLink="/principal"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          class="text-center flex items-center gap-1"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="home"
+          ></mat-icon
+          >Pantalla Principal</a
+        ></mat-list-item
+      >
+    </mat-list>
+    <div class="flex justify-center items-center">
+      <a
+        mat-raised-button
+        routerLink="/"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Cerrar Sesion</a
+      >
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+    <!-- component -->
+    <p>
+      <mat-toolbar>
+        <button
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+          (click)="drawer.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Mas Populares</span>
+        <span class="example-spacer"></span>
+        <div
+          class="p-2 whitespace-nowrap cursor-pointer"
+          [matMenuTriggerFor]="menu"
+        >
+          <div class="flex items-center">
+            <div
+              class="flex items-center justify-center w-12 h-12 mx-2 overflow-hidden rounded-full"
+            >
+              <img
+                class="rounded-md bg-cover ring-2 ring-white inline-block w-12 h-12 overflow-hidden"
+                [src]="usuario.picture.medium"
+                alt="User Name"
+              />
+            </div>
+          </div>
+        </div>
+        <mat-menu #menu="matMenu" class="w-fit p-2">
+          <p
+            class="cursor-default w-fit flex justify-center items-center gap-2 mx-4"
+          >
+            <mat-icon>account_circle</mat-icon>
+            <span>{{ usuario.name.first }} {{ usuario.name.last }}</span>
+          </p>
+          <p class="w-fit flex justify-center items-center gap-2 mx-4">
+            <mat-icon>mail</mat-icon>
+            <span>{{ usuario.email }}</span>
+          </p>
+          <p class="w-fit flex justify-center items-center gap-2 mx-4">
+            <mat-icon>phone</mat-icon>
+            <span>{{ usuario.cell }}</span>
+          </p>
+        </mat-menu>
+
+        <a
+          mat-raised-button
+          routerLink="/"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Cerrar Sesion</a
+        >
+      </mat-toolbar>
+    </p>
+
+    <p class="text-center text-4xl font-bold">Películas Mas populares</p>
+    <div class="grid grid-cols-5 gap-4">
+      <app-imagenes
+        [pelicula]="pelicula"
+        *ngFor="let pelicula of peliculas"
+      ></app-imagenes>
+    </div>
+  </div>
+</mat-drawer-container>
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
